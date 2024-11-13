@@ -4,7 +4,13 @@ app = Flask(__name__)
 
 @app.route('/home')
 def hello_world():
-    return render_template('home.html', context = "dep trai")
+    return render_template('home.html')
+
+@app.route('/test')
+def about():
+    return render_template('index_snow_test_3.html')
+    # return render_template('index_1.html')
+
 
 @app.route('/user/<name>')
 def user(name):

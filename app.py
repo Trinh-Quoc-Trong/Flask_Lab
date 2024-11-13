@@ -1,13 +1,15 @@
-from flask import Flask
+from flask import Flask, redirect, render_template, url_for
 
 app = Flask(__name__)
 
-@app.route('/index')
+@app.route('/home')
 def hello_world():
-    return '<h1>Hello, World!</h1>'
+    return render_template('home.html', context = "dep trai")
 
 @app.route('/user/<name>')
 def user(name):
+    if name == 'admin':
+        return redirect(url_for('admin'))
     return f'<h1>User is {name}</h1>'
 
 @app.route('/blog/<int:blog_int>')
@@ -15,6 +17,11 @@ def blog(blog_int):
     return f'<h1>Blog number {blog_int}</h1>'
 
 # cccc
+
+@app.route('/admin')
+def admin():
+    return '<h1>Admin Page</h1>'
+
 
 if __name__ == '__main__':
     app.run(debug=True)
